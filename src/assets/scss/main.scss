@@ -1,6 +1,7 @@
 @import 'reset/reset'; // reset style
-// @import 'partials/index.scss';
-//Общие
+@import '@fontsource/nunito-sans';
+
+// main
 
 *,
 *::before,
@@ -14,5 +15,6 @@ body {
 }
 
 body {
-  background-color: $color-white;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: #fafafa;
 }
