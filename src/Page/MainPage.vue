@@ -1,7 +1,11 @@
 <template>
-  <h1>Main page</h1>
+  <nav-bar />
+  <search-bar />
+  <country-list />
 </template>
 
-<script setup></script>
-
-<style lang="scss"></style>
+<script setup>
+import NavBar from '../components/NavBar.vue'
+import SearchBar from '../components/SearchBar.vue'
+import countryList from '../components/countryList.vue'
+</script>
