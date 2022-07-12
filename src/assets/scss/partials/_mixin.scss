@@ -1,0 +1,4 @@
+/* for country list item */
+@mixin item-width($item-count, $item-gap) {
+  flex-basis: calc((100% / $item-count) - $item-gap);
+}
