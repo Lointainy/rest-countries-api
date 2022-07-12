@@ -1,18 +1,7 @@
 @import 'reset/reset'; // reset style
 @import '@fontsource/nunito-sans';
 
-// main
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-}
+/* reset */
 
 select {
   font: inherit;
@@ -23,6 +12,23 @@ select {
   &::-ms-expand {
     display: none;
   }
+}
+
+button {
+  all: unset;
+}
+
+/* Main */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
 }
 
 body {
