@@ -7,7 +7,7 @@
 <script setup>
 import HeaderBar from '../components/HeaderBar.vue'
 import NavBar from '../components/NavBar.vue'
-import countryList from '../components/countryList.vue'
+import CountryList from '../components/CountryList.vue'
 </script>
 
 <style lang="scss">
