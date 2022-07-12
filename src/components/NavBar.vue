@@ -2,11 +2,50 @@
   <div class="navbar">
     <div class="navbar__logo">Where in the world?</div>
     <label class="navbar__theme-toggle">
-      <input type="checkbox" name="" id="" class="navbar__theme-toggle-btn" />
+      <input @change="toggleTheme" type="checkbox" name="" id="" class="navbar__theme-toggle-btn" />
       <span class="navbar__theme-toggle-icon"><i></i></span>
     </label>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const userTheme = ref('light-theme')
+
+onMounted(() => {
+  const initUserTheme = getTheme() || getMediaPreference()
+  setTheme(initUserTheme)
+})
+
+const toggleTheme = () => {
+  const activeTheme = localStorage.getItem('user-theme')
+  if (activeTheme === 'light-theme') {
+    setTheme('dark-theme')
+  } else {
+    setTheme('light-theme')
+  }
+}
+
+const getTheme = () => {
+  return localStorage.getItem('user-theme')
+}
+
+const setTheme = (theme) => {
+  localStorage.setItem('user-theme', theme)
+  userTheme.value = theme
+  document.documentElement.className = theme
+}
+
+const getMediaPreference = () => {
+  const hasDarkPreference = window.matchMedia('(prefers-color-scheme: dark)').matches
+  if (hasDarkPreference) {
+    return 'dark-theme'
+  } else {
+    return 'light-theme'
+  }
+}
+</script>
 
 <style lang="scss">
 .navbar {
@@ -15,14 +54,14 @@
   justify-content: space-between;
   align-items: center;
   height: 5rem;
-  background-color: $color-white;
-  box-shadow: $box-shadow-white;
+  background-color: var(--nav-bar-color);
+  box-shadow: var(--box-shadow-color);
 
   &__logo {
     font-weight: 400;
     font-size: 1.5rem;
     line-height: 2rem;
-    color: $color-chinese-black;
+    color: var(--font-color);
 
     @include mediaWidth(440px, mx) {
       font-size: 0.875rem;
@@ -47,7 +86,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: $color-chinese-black;
+      background-color: var(--swtich-btn-color);
       border-radius: 1.5rem;
       transition: 0.5s;
 
@@ -58,7 +97,7 @@
         width: 1.5rem;
         height: 1.5rem;
         overflow: hidden;
-        background-color: $color-lotion;
+        background-color: var(--swtich-btn-icon-color);
         border-radius: 50%;
         transition: 0.5s;
 
@@ -76,12 +115,12 @@
       appearance: none;
 
       &:checked ~ span {
-        background-color: $color-lotion;
+        background-color: var(--swtich-btn-color);
       }
 
       &:checked ~ span i {
         left: 2.25rem;
-        background-color: $color-chinese-black;
+        background-color: var(--swtich-btn-icon-color);
 
         @include mediaWidth(440px, mx) {
           left: 1.5rem;

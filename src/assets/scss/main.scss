@@ -16,5 +16,27 @@ body {
 
 body {
   font-family: 'Nunito Sans', sans-serif;
-  background-color: $color-lotion;
+  background-color: var(--background-color);
+}
+
+:root {
+  --background-color: #{$color-lotion};
+  --nav-bar-color: #{$color-white};
+  --font-color: #{$color-chinese-black};
+  --icon-color: #{$color-old-silver};
+  --input-placeholder-color: #{$color-old-silver};
+  --box-shadow-color: #{$box-shadow-white};
+  --swtich-btn-color: #{$color-charleston-green};
+  --swtich-btn-icon-color: #{$color-lotion};
+}
+
+:root.dark-theme {
+  --background-color: #{$color-charleston-green};
+  --nav-bar-color: #{$color-outer-Space};
+  --font-color: #{$color-white};
+  --icon-color: #{$color-white};
+  --input-placeholder-color: #{$color-white};
+  --box-shadow-color: #{$box-shadow-black};
+  --swtich-btn-color: #{$color-lotion};
+  --swtich-btn-icon-color: #{$color-charleston-green};
 }
