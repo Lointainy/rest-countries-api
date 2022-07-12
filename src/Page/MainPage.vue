@@ -1,12 +1,12 @@
 <template>
+  <header-bar />
   <nav-bar />
-  <search-bar />
   <country-list />
 </template>
 
 <script setup>
+import HeaderBar from '../components/HeaderBar.vue'
 import NavBar from '../components/NavBar.vue'
-import SearchBar from '../components/SearchBar.vue'
 import countryList from '../components/countryList.vue'
 </script>
 
