@@ -1,16 +1,23 @@
 <template>
-  <div v-for="item in 8" :key="item" class="country-list__item">
-    <img class="country-list__item-img" src="" alt="" />
-
+  <div v-for="country in countryList" :key="country" class="country-list__item">
+    <img class="country-list__item-img" :src="country.flags.png" :alt="`${country.name.common} img`" />
+    {{}}
     <div class="country-list__item-field">
-      <div class="field-title">title</div>
-      <div class="field-subtitle"><span class="bold">Population</span>subtitle</div>
-      <div class="field-subtitle"><span class="bold">Region:</span>subtitle</div>
-      <div class="field-subtitle"><span class="bold">Capital:</span>subtitle</div>
+      <div class="field-title">{{ country.name.common }}</div>
+      <div class="field-subtitle"><span class="bold">Population</span>{{ country.population.toLocaleString() }}</div>
+      <div class="field-subtitle"><span class="bold">Region:</span>{{ country.region }}</div>
+      <div v-if="country.capital" class="field-subtitle">
+        <span class="bold">Capital:</span>{{ country.capital.join(', ') }}
+      </div>
     </div>
   </div>
 </template>
 
+<script setup>
+import { inject } from 'vue'
+
+const countryList = inject('countryList')
+</script>
 <style lang="scss">
 .country-list__item {
   flex-grow: 1;
