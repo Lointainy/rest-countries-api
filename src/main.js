@@ -8,4 +8,4 @@ library.add(fas)
 
 import './assets/scss/main.scss'
 
-createApp(App).component('fa', FontAwesomeIcon).mount('#app')
+createApp(App).component('font-icon', FontAwesomeIcon).mount('#app')
