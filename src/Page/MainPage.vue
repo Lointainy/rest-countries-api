@@ -1,6 +1,5 @@
 <template>
   <header-bar />
-  <button @click="testButton">x</button>
   <nav-bar :search="search" :filter="filter" @update:search="(v) => (search = v)" @update:filter="(v) => (filter = v)">
     <template #page-pagination>
       <page-pagination :current="currentPage" :total="lastPage()" @on-page-change="(v) => (currentPage = v)" />
