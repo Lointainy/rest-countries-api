@@ -1,12 +1,39 @@
 <template>
   <div class="pagination">
-    <button disabled class="pagination__btn"><font-icon icon="chevron-left"></font-icon></button>
-    <button class="pagination__btn">1</button>
-    <button class="pagination__btn">5</button>
-    <button class="pagination__btn">30</button>
-    <button class="pagination__btn"><font-icon icon="chevron-right"></font-icon></button>
+    <button @click="handlePrevClick" :disabled="current <= 1" class="pagination__btn">
+      <font-icon icon="chevron-left"></font-icon>
+    </button>
+
+    <button @click="handlePageChange(1)" class="pagination__btn">1</button>
+
+    <button class="pagination__btn">{{ current }}</button>
+
+    <button @click="handlePageChange(total)" class="pagination__btn">{{ total }}</button>
+
+    <button :disabled="current >= total" @click="handleNextClick" class="pagination__btn">
+      <font-icon icon="chevron-right"></font-icon>
+    </button>
   </div>
 </template>
+
+<script setup>
+import { ref, defineEmits, defineProps } from 'vue'
+
+const props = defineProps({
+  current: {
+    type: Number,
+  },
+  total: {
+    type: Number,
+  },
+})
+
+const emit = defineEmits(['onPageChange'])
+const pageChange = (value) => emit('onPageChange', value)
+const handlePrevClick = () => pageChange(props.current - 1)
+const handleNextClick = () => pageChange(props.current + 1)
+const handlePageChange = (value) => pageChange(value)
+</script>
 
 <style lang="scss">
 .pagination {
