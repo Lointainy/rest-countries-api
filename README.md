@@ -3,7 +3,7 @@
 ## Table of contents
 
 - [Overview](#overview)
-  - [Preview](https://rest-countries-api-lointainy.netlify.app/)
+  - [Preview]()
   - [Description](#description)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -31,6 +31,8 @@ Your [challenge](https://www.frontendmentor.io/challenges/rest-countries-api-wit
   - [prettier](https://prettier.io/)
   - [stylelint](https://stylelint.io/)
   - [sass](https://sass-lang.com/)
+  - [fontsource](https://fontsource.org/)
+  - [fontawesome](https://fontawesome.com/)
 - [Vue3](https://vuejs.org/) - framework / composition api
 - [Vite](https://vitejs.dev/) - module bundler
 
@@ -40,11 +42,14 @@ Your [challenge](https://www.frontendmentor.io/challenges/rest-countries-api-wit
   - Page / components
   - Ref
   - Props
-  - Emit
+  - Emits
   - Provide / inject
+  - Watch
+  - Slots
+  - Mounted
   - Routers
 - JS
-  - api
+  - fetch api
 
 ###### Project status
 
