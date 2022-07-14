@@ -13,7 +13,7 @@ import CountryCard from './CountryCard.vue'
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 4rem;
+  margin: 4rem 0;
   gap: 4.7rem;
 }
 </style>
