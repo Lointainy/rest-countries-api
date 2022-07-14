@@ -9,7 +9,7 @@
     </label>
     <slot name="page-pagination"></slot>
     <div class="filter">
-      <div :class="[showFilters ? 'active' : '']" class="filter__icon">
+      <div :class="showFilters ? 'active' : ''" class="filter__icon">
         <font-icon icon="chevron-down"></font-icon>
       </div>
       <select @click="toggleShow" v-model="filterValue" name="" id="" class="filter__select">
@@ -58,6 +58,7 @@ const filterValue = computed({
 })
 
 const showFilters = ref(false)
+
 const toggleShow = () => {
   showFilters.value = !showFilters.value
 }
