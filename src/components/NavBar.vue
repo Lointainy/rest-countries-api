@@ -1,20 +1,66 @@
 <template>
   <nav class="navbar">
     <label for="" class="search">
-      <input type="search" name="" id="" class="search__input" placeholder="search coutry" />
-      <span class="search__icon">icon</span>
-      <button class="search__btn">x</button>
+      <input v-model="searchValue" type="search" name="" id="" class="search__input" placeholder="search coutry" />
+      <span class="search__icon"><font-icon icon="search"></font-icon></span>
+      <button v-if="searchValue != 0" @click="searchValue = ''" class="search__btn">
+        <font-icon icon="plus"></font-icon>
+      </button>
     </label>
     <div class="filter">
-      <div class="filter__icon">></div>
-      <select name="" id="" class="filter__select">
+      <div :class="[showFilters ? 'active' : '']" class="filter__icon">
+        <font-icon icon="chevron-down"></font-icon>
+      </div>
+      <select @click="toggleShow" v-model="filterValue" name="" id="" class="filter__select">
         <option class="none" value="" disabled selected>Filter by Region</option>
-        <option value="" class="filter__option">none</option>
-        <option value="" class="filter__option">name</option>
+        <option v-if="filterValue !== ''" @click="filterValue = ''" value="" class="filter__option">none</option>
+        <option v-for="filter in filters" :key="filter.name" :value="filter.name" class="filter__option">
+          {{ filter.name }}
+        </option>
       </select>
     </div>
   </nav>
 </template>
+
+<script setup>
+import { defineProps, defineEmits, computed, ref } from 'vue'
+
+const props = defineProps({
+  search: {
+    type: String,
+    default: '',
+  },
+  filter: {
+    type: String,
+    default: '',
+  },
+})
+
+const emit = defineEmits(['update:search', 'update:filter'])
+
+const filters = ref([
+  { name: 'Africa', status: 'false' },
+  { name: 'Americas', status: 'false' },
+  { name: 'Asia', status: 'false' },
+  { name: 'Europe', status: 'false' },
+  { name: 'Oceania', status: 'false' },
+])
+
+const searchValue = computed({
+  get: () => props.search,
+  set: (value) => emit('update:search', value),
+})
+
+const filterValue = computed({
+  get: () => props.filter,
+  set: (value) => emit('update:filter', value),
+})
+
+const showFilters = ref(false)
+const toggleShow = () => {
+  showFilters.value = !showFilters.value
+}
+</script>
 
 <style lang="scss">
 .navbar {
@@ -105,6 +151,10 @@
     right: 1.5rem;
     color: var(--font-color);
     transition: all 0.5s;
+  }
+
+  &__icon.active {
+    transform: rotate(180deg);
   }
 
   &__select {

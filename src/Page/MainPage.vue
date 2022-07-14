@@ -1,6 +1,12 @@
 <template>
   <header-bar />
-  <nav-bar />
+
+  <nav-bar
+    :search="search"
+    :filter="filter"
+    @update:search="(v) => (search = v)"
+    @update:filter="(v) => (filter = v)"
+  />
   <country-list />
 </template>
 
@@ -11,9 +17,13 @@ import HeaderBar from '../components/HeaderBar.vue'
 import NavBar from '../components/NavBar.vue'
 import CountryList from '../components/CountryList.vue'
 
-const countries = ref([])
+const search = ref('')
+const filter = ref('')
 
 //GET api data
+
+const countries = ref([])
+
 onMounted(() => {
   fetch('https://restcountries.com/v3.1/all')
     .then((res) => res.json())
@@ -21,7 +31,7 @@ onMounted(() => {
     .catch((err) => console.log(err.message))
 })
 
-provide(/* key */ 'countryList', /* value */ countries)
+provide('countryList', countries)
 </script>
 
 <style lang="scss">
