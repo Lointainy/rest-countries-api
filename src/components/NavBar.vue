@@ -7,6 +7,7 @@
         <font-icon icon="plus"></font-icon>
       </button>
     </label>
+    <slot name="page-pagination"></slot>
     <div class="filter">
       <div :class="[showFilters ? 'active' : '']" class="filter__icon">
         <font-icon icon="chevron-down"></font-icon>

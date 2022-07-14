@@ -1,12 +1,12 @@
 <template>
   <header-bar />
 
-  <nav-bar
-    :search="search"
-    :filter="filter"
-    @update:search="(v) => (search = v)"
-    @update:filter="(v) => (filter = v)"
-  />
+  <nav-bar :search="search" :filter="filter" @update:search="(v) => (search = v)" @update:filter="(v) => (filter = v)">
+    <template #page-pagination>
+      <page-pagination />
+    </template>
+  </nav-bar>
+
   <country-list />
 </template>
 
@@ -16,6 +16,7 @@ import { ref, onMounted, provide } from 'vue'
 import HeaderBar from '../components/HeaderBar.vue'
 import NavBar from '../components/NavBar.vue'
 import CountryList from '../components/CountryList.vue'
+import PagePagination from '../components/PagePagination.vue'
 
 const search = ref('')
 const filter = ref('')
