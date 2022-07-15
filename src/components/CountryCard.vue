@@ -1,6 +1,6 @@
 <template>
   <div v-for="country in countryList" :key="country" class="country-list__item">
-    <router-link :to="`/detailpage/${country.name.common}`">
+    <router-link :to="`/detailpage/${country.cca3.toLowerCase()}`">
       <img class="country-list__item-img" :src="country.flags.png" :alt="`${country.name.common} img`" />
       <div class="country-list__item-field">
         <div class="field-title">{{ country.name.common }}</div>
