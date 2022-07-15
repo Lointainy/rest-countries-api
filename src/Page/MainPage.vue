@@ -1,5 +1,4 @@
 <template>
-  <header-bar />
   <nav-bar :search="search" :filter="filter" @update:search="(v) => (search = v)" @update:filter="(v) => (filter = v)">
     <template #page-pagination>
       <page-pagination :current="currentPage" :total="lastPage()" @on-page-change="(v) => (currentPage = v)" />
@@ -12,7 +11,6 @@
 <script setup>
 import { ref, onMounted, provide, computed, watch } from 'vue'
 
-import HeaderBar from '../components/HeaderBar.vue'
 import NavBar from '../components/NavBar.vue'
 import CountryList from '../components/CountryList.vue'
 import PagePagination from '../components/PagePagination.vue'
