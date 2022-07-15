@@ -57,3 +57,9 @@ body {
   --swtich-btn-color: #{$color-lotion};
   --swtich-btn-icon-color: #{$color-charleston-green};
 }
+
+.bold {
+  margin-right: 0.5rem;
+  font-weight: 600;
+  color: var(--font-color);
+}
