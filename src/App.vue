@@ -1,7 +1,10 @@
 <template>
-  <main-page />
+  <header-bar />
+  <router-view></router-view>
+  <!-- <main-page /> -->
 </template>
 
 <script setup>
-import MainPage from './Page/MainPage.vue'
+import HeaderBar from './components/HeaderBar.vue'
+// import MainPage from './Page/MainPage.vue'
 </script>
