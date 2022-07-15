@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="header__logo">Where in the world?</div>
+    <router-link to="/home" class="header__logo">Where in the world?</router-link>
     <label class="header__theme-toggle">
       <input @change="toggleTheme" type="checkbox" name="" id="" class="header__theme-toggle-btn" />
       <span class="header__theme-toggle-icon"><i></i></span>
