@@ -3,6 +3,7 @@
     <img class="country-list__item-img" :src="country.flags.png" :alt="`${country.name.common} img`" />
     {{}}
     <div class="country-list__item-field">
+      <router-link :to="`/detailpage/${country.name.common}`">{{ country.name.common }}</router-link>
       <div class="field-title">{{ country.name.common }}</div>
       <div class="field-subtitle"><span class="bold">Population</span>{{ country.population.toLocaleString() }}</div>
       <div class="field-subtitle"><span class="bold">Region:</span>{{ country.region }}</div>
