@@ -6,6 +6,6 @@ export default createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/home', component: MainPage, alias: '/' },
-    { path: '/detailpage/:countryname?', component: DetailPage },
+    { path: '/details/:countryname?', component: DetailPage },
   ],
 })
