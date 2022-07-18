@@ -1,24 +1,50 @@
 <template>
-  <div v-for="country in countryList" :key="country" class="country-list__item">
-    <router-link :to="`/details/${country.cca3.toLowerCase()}`">
-      <img class="country-list__item-img" :src="country.flags.svg" :alt="`${country.name.common} flag`" />
+  <li class="country-list__item">
+    <router-link :to="`/details/${code.toLowerCase()}`">
+      <img class="country-list__item-img" :src="flagImg" :alt="`${name} flag`" />
       <div class="country-list__item-field">
-        <div class="field-title">{{ country.name.common }}</div>
-        <div class="field-subtitle"><span class="bold">Population</span>{{ country.population.toLocaleString() }}</div>
-        <div class="field-subtitle"><span class="bold">Region:</span>{{ country.region }}</div>
-        <div v-if="country.capital" class="field-subtitle">
-          <span class="bold">Capital:</span>{{ country.capital.join(', ') }}
+        <div class="field-title">{{ name }}</div>
+        <div class="field-subtitle"><span class="bold">Population</span>{{ population.toLocaleString() }}</div>
+        <div class="field-subtitle"><span class="bold">Region:</span>{{ region }}</div>
+        <div v-if="capital.length" class="field-subtitle">
+          <span class="bold">Capital:</span>{{ capital.join(', ') }}
         </div>
       </div>
     </router-link>
-  </div>
+  </li>
 </template>
 
 <script setup>
-import { inject } from 'vue'
+import { defineProps } from 'vue'
 
-const countryList = inject('countryList')
+const props = defineProps({
+  flagImg: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  code: {
+    type: String,
+    required: true,
+  },
+  population: {
+    type: Number,
+    default: null,
+  },
+  region: {
+    type: String,
+    default: '',
+  },
+  capital: {
+    type: Array,
+    default: () => [],
+  },
+})
 </script>
+
 <style lang="scss">
 .country-list__item {
   flex-grow: 1;

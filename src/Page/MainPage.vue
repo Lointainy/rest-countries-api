@@ -5,7 +5,18 @@
     </template>
   </nav-bar>
 
-  <country-list />
+  <country-list>
+    <template #card="{ country }">
+      <country-card
+        :name="country.name.common"
+        :flagImg="country.flags.png"
+        :population="country.population"
+        :region="country.region"
+        :capital="country.capital"
+        :code="country.cca3"
+      />
+    </template>
+  </country-list>
 </template>
 
 <script setup>
@@ -14,6 +25,7 @@ import { ref, onMounted, provide, inject, computed, watch, defineEmits } from 'v
 import NavBar from '../components/NavBar.vue'
 import CountryList from '../components/CountryList.vue'
 import PagePagination from '../components/PagePagination.vue'
+import CountryCard from '../components/CountryCard.vue'
 
 // event to getting data
 

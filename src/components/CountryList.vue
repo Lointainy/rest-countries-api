@@ -1,10 +1,15 @@
 <template>
-  <div class="country-list">
-    <country-card />
-  </div>
+  <ul class="country-list">
+    <template v-if="countryList.length">
+      <slot v-for="country in countryList" :key="country.name.common" name="card" :country="country" />
+    </template>
+  </ul>
 </template>
+
 <script setup>
-import CountryCard from './CountryCard.vue'
+import { inject } from 'vue'
+
+const countryList = inject('countryList')
 </script>
 
 <style lang="scss">
