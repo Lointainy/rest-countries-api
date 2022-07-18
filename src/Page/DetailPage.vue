@@ -1,8 +1,12 @@
 <template>
-  <div class="detail">
-    <button class="detail__btn"><font-icon class="detail__btn-icon" icon="arrow-left-long" />back</button>
+  <div v-if="country" class="detail">
+    <button @click="goToHome" class="detail__btn">
+      <font-icon class="detail__btn-icon" icon="arrow-left-long" />back
+    </button>
     <div class="detail__country">
-      <div class="detail__country-img">1</div>
+      <div class="detail__country-img">
+        <img class="country-list__item-img" :src="country?.flags?.png" :alt="`${country?.name?.common} flag`" />
+      </div>
       <div class="detail__country-info">
         <h1 class="info-title">Ukraine</h1>
         <div class="info-list">
@@ -27,6 +31,24 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import { useRouter, useRoute } from 'vue-router'
+import { inject, onBeforeMount } from 'vue'
+
+const router = useRouter()
+const route = useRoute()
+
+const handleGetCountry = inject('handleGetCountry')
+const country = inject('country')
+
+onBeforeMount(() => {
+  console.log(country)
+  handleGetCountry(route.params.countryname)
+})
+
+const goToHome = () => router.push('/home')
+</script>
 
 <style lang="scss">
 .detail {
