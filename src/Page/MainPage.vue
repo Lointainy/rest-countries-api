@@ -9,36 +9,36 @@
 </template>
 
 <script setup>
-import { ref, onMounted, provide, computed, watch } from 'vue'
+import { ref, onMounted, provide, inject, computed, watch, defineEmits } from 'vue'
 
 import NavBar from '../components/NavBar.vue'
 import CountryList from '../components/CountryList.vue'
 import PagePagination from '../components/PagePagination.vue'
 
-const search = ref('')
-const filter = ref('')
+// event to getting data
 
-/* GET API DATA */
+const emit = defineEmits(['onGetCoutries'])
 
-const countries = ref([])
+const countries = inject('countries')
+const handleGetCountries = inject('handleGetCountries')
 
 onMounted(() => {
-  fetch('https://restcountries.com/v3.1/all')
-    .then((res) => res.json())
-    .then((data) => (countries.value = data))
-    .catch((err) => console.log(err.message))
+  handleGetCountries()
 })
 
 /* Pagination */
 
 const currentPage = ref(1)
 const itemsPerPage = ref(8)
-const lastPage = () => Math.ceil(filteredCounties().value.length / itemsPerPage.value)
 
+const lastPage = () => Math.ceil(filteredCounties().value.length / itemsPerPage.value)
 const end = computed(() => currentPage.value * itemsPerPage.value)
 const start = computed(() => end.value - itemsPerPage.value)
 
 /* search, filter */
+
+const search = ref('')
+const filter = ref('')
 
 const filteredCounties = () =>
   computed(() =>
