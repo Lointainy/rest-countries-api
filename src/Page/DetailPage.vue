@@ -5,27 +5,43 @@
     </button>
     <div class="detail__country">
       <div class="detail__country-img">
-        <img class="country-list__item-img" :src="country?.flags?.png" :alt="`${country?.name?.common} flag`" />
+        <img class="country-list__item-img" :src="country.flags.svg" :alt="`${country.name.common} flag`" />
       </div>
       <div class="detail__country-info">
-        <h1 class="info-title">Ukraine</h1>
+        <h1 class="info-title">{{ country.name.common }}</h1>
         <div class="info-list">
           <ul class="info-list__main">
-            <li class="info-list__main-item"><span class="bold">Native Name:</span>Ukraine</li>
-            <li class="info-list__main-item"><span class="bold">Population:</span>40 000 000</li>
-            <li class="info-list__main-item"><span class="bold">Region: Europe:</span>Ukraine</li>
-            <li class="info-list__main-item"><span class="bold">Sub Region:</span>Ukraine</li>
-            <li class="info-list__main-item"><span class="bold">Capital:</span>Kiev</li>
+            <li class="info-list__main-item"><span class="bold">Native Name:</span>{{ country.name.official }}</li>
+            <li class="info-list__main-item">
+              <span class="bold">Population:</span>{{ country.population.toLocaleString() }}
+            </li>
+            <li class="info-list__main-item"><span class="bold">Region: </span>{{ country.region }}</li>
+            <li class="info-list__main-item"><span class="bold">Sub Region:</span>{{ country.subregion }}</li>
+            <li v-if="country.capital.length" class="info-list__main-item">
+              <span class="bold">Capital:</span>{{ country.capital.join(', ') }}
+            </li>
           </ul>
           <ul class="info-list__other">
-            <li class="info-list__other-item"><span class="bold">Top Level Domain:</span>.ua</li>
-            <li class="info-list__other-item"><span class="bold">Currencies:</span>Ukraine</li>
-            <li class="info-list__other-item"><span class="bold">Languages:</span>Ukraine</li>
+            <li class="info-list__other-item">
+              <span class="bold">Top Level Domain:</span>{{ country.tld.join(', ') }}
+            </li>
+            <li class="info-list__other-item">
+              <span class="bold">Currencies:</span>
+              <span v-for="curr in country.currencies" :key="curr">{{ curr.symbol }} {{ curr.name }}</span>
+            </li>
+            <li class="info-list__other-item">
+              <span class="bold">Languages:</span
+              ><span v-for="lang in country.languages" :key="lang">{{ lang }}, </span>
+            </li>
           </ul>
         </div>
         <div class="info-links">
           <span class="bold">Border Countries:</span>
-          <button class="info-links__btn">Poland</button>
+          <ul class="info-links__list">
+            <li v-for="borderCountry in country.borders" :key="borderCountry" class="info-links__btn">
+              {{ borderCountry }}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -165,6 +181,7 @@ const goToHome = () => router.push('/home')
 
       .info-links {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         margin-top: 4.25rem;
 
@@ -174,6 +191,7 @@ const goToHome = () => router.push('/home')
 
         &__btn {
           height: 1.75rem;
+          margin: 0.25rem;
           padding: 0 1.25rem;
           font-weight: 300;
           font-size: 0.875rem;
