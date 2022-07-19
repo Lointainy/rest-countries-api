@@ -20,22 +20,21 @@
 </template>
 
 <script setup>
-import { ref, onMounted, provide, inject, computed, watch, defineEmits } from 'vue'
+import { ref, onBeforeMount, provide, computed, watch } from 'vue'
 
 import NavBar from '../components/NavBar.vue'
 import CountryList from '../components/CountryList.vue'
 import PagePagination from '../components/PagePagination.vue'
 import CountryCard from '../components/CountryCard.vue'
 
-// event to getting data
+import { useStore } from '@/store/countries.js'
 
-const emit = defineEmits(['onGetCoutries'])
+const storeCountries = useStore()
 
-const countries = inject('countries')
-const handleGetCountries = inject('handleGetCountries')
+const countries = computed(() => storeCountries.countries)
 
-onMounted(() => {
-  handleGetCountries()
+onBeforeMount(() => {
+  storeCountries.getCountriesFromApi()
 })
 
 /* Pagination */

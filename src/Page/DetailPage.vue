@@ -57,20 +57,21 @@
 
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
-import { inject, onBeforeMount, onBeforeUpdate } from 'vue'
+import { onBeforeMount, onBeforeUpdate, computed } from 'vue'
+import { useStore } from '@/store/countries.js'
 
 const router = useRouter()
 const route = useRoute()
+const storeCountries = useStore()
 
-const handleGetCountry = inject('handleGetCountry')
-const country = inject('country')
+const country = computed(() => storeCountries.country)
 
 onBeforeMount(() => {
-  handleGetCountry(route.params.countryname)
+  storeCountries.getCountryFromApi(route.params.countryname)
 })
 
 onBeforeUpdate(() => {
-  handleGetCountry(route.params.countryname)
+  storeCountries.getCountryFromApi(route.params.countryname)
 })
 
 const goToHome = () => router.push('/home')
