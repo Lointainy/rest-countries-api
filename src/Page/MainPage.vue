@@ -29,12 +29,12 @@ import CountryCard from '../components/CountryCard.vue'
 
 import { useStore } from '@/store/countries.js'
 
-const storeCountries = useStore()
+const store = useStore()
 
-const countries = computed(() => storeCountries.countries)
+const countries = computed(() => store.countries)
 
 onBeforeMount(() => {
-  storeCountries.getCountriesFromApi()
+  store.getCountriesFromApi()
 })
 
 /* Pagination */
