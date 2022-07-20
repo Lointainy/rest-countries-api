@@ -4,8 +4,8 @@
       <page-pagination :current="currentPage" :total="lastPage()" @on-page-change="(v) => (currentPage = v)" />
     </template>
   </nav-bar>
-
-  <country-list>
+  <list-loader v-if="store.isLoading" />
+  <country-list v-if="!store.isLoading">
     <template #card="{ country }">
       <country-card
         :name="country.name.common"
@@ -24,6 +24,7 @@ import { ref, onBeforeMount, provide, computed, watch } from 'vue'
 
 import NavBar from '../components/NavBar.vue'
 import CountryList from '../components/CountryList.vue'
+import ListLoader from '../components/ListLoader.vue'
 import PagePagination from '../components/PagePagination.vue'
 import CountryCard from '../components/CountryCard.vue'
 
@@ -33,6 +34,8 @@ const store = useStore()
 
 const countries = computed(() => store.countries)
 
+const loading = () => console.log(store.isLoading)
+loading()
 onBeforeMount(() => {
   store.getCountriesFromApi()
 })
