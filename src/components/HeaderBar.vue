@@ -123,7 +123,7 @@ const getMediaPreference = () => {
         background-color: var(--swtich-btn-icon-color);
 
         @include mediaWidth(440px, mx) {
-          left: 1.5rem;
+          left: 1.75rem;
         }
       }
     }

@@ -4,8 +4,8 @@
       <page-pagination :current="currentPage" :total="lastPage()" @on-page-change="(v) => (currentPage = v)" />
     </template>
   </nav-bar>
-
-  <country-list>
+  <list-loader v-if="store.isLoading" />
+  <country-list v-if="!store.isLoading">
     <template #card="{ country }">
       <country-card
         :name="country.name.common"
@@ -20,22 +20,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted, provide, inject, computed, watch, defineEmits } from 'vue'
+import { ref, onBeforeMount, provide, computed, watch } from 'vue'
 
 import NavBar from '../components/NavBar.vue'
 import CountryList from '../components/CountryList.vue'
+import ListLoader from '../components/ListLoader.vue'
 import PagePagination from '../components/PagePagination.vue'
 import CountryCard from '../components/CountryCard.vue'
 
-// event to getting data
+import { useStore } from '@/store/countries.js'
 
-const emit = defineEmits(['onGetCoutries'])
+const store = useStore()
 
-const countries = inject('countries')
-const handleGetCountries = inject('handleGetCountries')
+const countries = computed(() => store.countries)
 
-onMounted(() => {
-  handleGetCountries()
+onBeforeMount(() => {
+  store.getCountriesFromApi()
 })
 
 /* Pagination */
@@ -61,8 +61,28 @@ const filteredCounties = () =>
     )
   )
 
-watch(search, () => (currentPage.value = 1))
-watch(filter, () => (currentPage.value = 1))
+watch(search, () => {
+  store.isLoading = true
+  setTimeout(() => {
+    store.isLoading = false
+    currentPage.value = 1
+  }, 1000)
+})
+
+watch(filter, () => {
+  store.isLoading = true
+  setTimeout(() => {
+    store.isLoading = false
+    currentPage.value = 1
+  }, 1000)
+})
+
+watch(currentPage, () => {
+  store.isLoading = true
+  setTimeout(() => {
+    store.isLoading = false
+  }, 750)
+})
 
 const filteredList = () => computed(() => filteredCounties().value.slice(start.value, end.value))
 
