@@ -34,8 +34,6 @@ const store = useStore()
 
 const countries = computed(() => store.countries)
 
-const loading = () => console.log(store.isLoading)
-loading()
 onBeforeMount(() => {
   store.getCountriesFromApi()
 })
@@ -63,8 +61,28 @@ const filteredCounties = () =>
     )
   )
 
-watch(search, () => (currentPage.value = 1))
-watch(filter, () => (currentPage.value = 1))
+watch(search, () => {
+  store.isLoading = true
+  setTimeout(() => {
+    store.isLoading = false
+    currentPage.value = 1
+  }, 1000)
+})
+
+watch(filter, () => {
+  store.isLoading = true
+  setTimeout(() => {
+    store.isLoading = false
+    currentPage.value = 1
+  }, 1000)
+})
+
+watch(currentPage, () => {
+  store.isLoading = true
+  setTimeout(() => {
+    store.isLoading = false
+  }, 750)
+})
 
 const filteredList = () => computed(() => filteredCounties().value.slice(start.value, end.value))
 
