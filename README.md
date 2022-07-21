@@ -3,7 +3,7 @@
 ## Table of contents
 
 - [Overview](#overview)
-  - [Preview]()
+  - [Preview](https://rest-countries-api-lointainy.netlify.app/)
   - [Description](#description)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -35,6 +35,7 @@ Your [challenge](https://www.frontendmentor.io/challenges/rest-countries-api-wit
   - [fontawesome](https://fontawesome.com/)
 - [Vue3](https://vuejs.org/) - framework / composition api
 - [Vite](https://vitejs.dev/) - module bundler
+- [Pinia](https://pinia.vuejs.org/) - state management
 
 ###### What i learned
 
@@ -48,6 +49,8 @@ Your [challenge](https://www.frontendmentor.io/challenges/rest-countries-api-wit
   - Slots
   - Mounted
   - Routers
+- Pinia
+- store
 - JS
   - fetch api
 
@@ -55,7 +58,7 @@ Your [challenge](https://www.frontendmentor.io/challenges/rest-countries-api-wit
 
 ![complete](https://img.shields.io/badge/project_created:-08.07.2022-333?style=for-the-badge&labelColor=e7901f)
 
-![update](https://img.shields.io/badge/last_update:-14.07.22-333?style=for-the-badge&labelColor=1fe783)
+![update](https://img.shields.io/badge/last_update:-21.07.22-333?style=for-the-badge&labelColor=1fe783)
 
 ###### Author
 
