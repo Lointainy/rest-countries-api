@@ -1,7 +1,9 @@
 {
   "plugins": ["stylelint-order"],
-  "extends": ["stylelint-config-recommended-scss", "stylelint-config-recommended-vue/scss"],
+  "extends": ["stylelint-config-recommended-scss", "stylelint-config-recommended-vue"],
   "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
     "color-hex-length": "long",
     "color-named": "never",
     "font-weight-notation": "numeric",
